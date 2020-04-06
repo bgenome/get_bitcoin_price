@@ -6,6 +6,7 @@ import json
 
 def get_current():
     url = 'https://api.coindesk.com/v1/bpi/currentprice.json'
+    response = '{}'
     try:
         response = urllib.request.urlopen(url).read().decode('utf-8')
     except urllib.error.HTTPError as error:
@@ -13,11 +14,7 @@ def get_current():
     except urllib.error.URLError as error:
         print(f'reason: {error.reason}')
 
-    try:
-        response_parse = json.loads(response)
-    except json.JSONDecodeError as error:
-        print(f'json error: {error.msg}')
-
+    response_parse = json.loads(response)
     current_price = None
     if 'bpi' in response_parse:
         if 'EUR' in response_parse['bpi']:
