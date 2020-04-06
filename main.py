@@ -32,7 +32,8 @@ if __name__ == "__main__":
     count = 1
     while 1:
         current = get_current()
-        last_ten.append(current)
+        if current is not None:
+            last_ten.append(current)
         if len(last_ten) > 10:
             last_ten.pop(0)
         if count <= 10:
